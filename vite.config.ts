@@ -16,7 +16,7 @@ export default defineConfig({
   plugins: [
     tanstackStart({
       server: { entry: "server" },
-      prerender: { enabled: true, failOnError: true },
+      prerender: { enabled: true, crawlLinks: false, failOnError: true },
     }),
     viteReact(),
     tailwindcss(),
