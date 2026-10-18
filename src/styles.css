@@ -87,7 +87,11 @@
 .mobile-break { display: none; }
 .hero-thinker { margin-top: 26px; font-size: 20px; font-weight: 600; }
 .hero-lead { font-size: 16px; line-height: 1.8; margin-top: 12px; color: var(--muted-foreground); white-space: pre-line; }
-.hero .intro-link { margin-top: 29px; height: 45px; padding: 0 21px; font-size: 14px; border-radius: 2px; }
+.hero-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 29px; }
+.hero .intro-link,.hero .hero-cv { height: 45px; padding: 0 21px; font-size: 14px; border-radius: 2px; }
+.hero .intro-link { margin-top: 0; }
+.hero .hero-cv { background: var(--background); border-color: var(--foreground); }
+.hero .hero-cv svg { width: 16px; }
 .hero-bottom { position: absolute; bottom: 27px; left: 5%; right: 5%; display: flex; justify-content: space-between; color: var(--muted-foreground); }
 .hero-bottom svg { width: 18px; }
 .thread-strip { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; padding: 22px 5%; gap: 25px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); font-size: 13px; }
@@ -98,6 +102,7 @@
 .section-label { color: var(--gold); margin-bottom: 20px; }
 .section h2 { font-size: 46px; line-height: 1.16; white-space: pre-line; }
 .section-heading > p { max-width: 285px; font-size: 15px; line-height: 1.8; color: var(--muted-foreground); }
+.ambition-section .section-heading > p { align-self: flex-start; margin-top: 42px; }
 .perspective-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; }
 .question-image { width: 100%; height: auto; aspect-ratio: 683 / 622; object-fit: cover; display: block; }
 .image-caption { display: flex; justify-content: space-between; margin-top: 14px; font-size: 11px; color: var(--muted-foreground); letter-spacing: 1.2px; }
@@ -109,6 +114,7 @@
 .answer-number { font-size: 12px; opacity: .55; }
 .question-note { margin-top: 21px; color: var(--muted-foreground); font-size: 10px; letter-spacing: 1px; }
 .reveal { margin-top: 35px; padding: 30px 0 0; border-top: 1px solid var(--border); animation: reveal-in .4s ease both; }
+.reveal .section-label { display: inline-flex; align-items: center; padding: 6px 11px; margin-bottom: 3px; background: var(--primary); color: var(--primary-foreground); font-size: 13px; font-weight: 700; letter-spacing: 1.8px; }
 .reveal h3 { font-size: 27px; margin: 11px 0 15px; }
 .reveal p { max-width: 760px; font-size: 16px; line-height: 1.9; color: var(--muted-foreground); }
 .reveal .chosen-perspective { color: var(--foreground); margin-bottom: 16px; }
@@ -135,7 +141,7 @@
 .contact-grid { display: flex; justify-content: space-between; align-items: end; gap: 40px; }
 .contact-section h2 { font-size: 52px; }
 .contact-section p { color: var(--dark-muted); margin-top: 20px; font-size: 15px; line-height: 1.85; white-space: pre-line; }
-.contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; min-width: 230px; }
+.contact-links { display: flex; flex-direction: column; align-items: center; gap: 14px; min-width: 230px; }
 .contact-links .contact-primary { background: var(--background); color: var(--foreground); height: 47px; border-radius: 2px; padding: 0 22px; font-size: 14px; }
 .contact-links .contact-secondary { color: var(--primary-foreground); font-size: 14px; padding: 0; }
 .footer { padding: 24px 5%; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 12px; color: var(--muted-foreground); }
@@ -147,7 +153,7 @@
 @media(max-width:700px) {
  .site-header { height: 76px; padding: 0 6%; } .desktop-nav { display: none; } .header-talk { display: none; } .brand-name { font-size: 15px; } .brand-sub { font-size: 9px; } .monogram { width: 36px; height: 36px; font-size: 22px; } .wordmark { gap: 10px; }
  .hero { min-height: 680px; height: calc(100svh - 125px); max-height: 780px; } .hero-image { object-position: 67% center; opacity: .43; } .hero-content { padding: 4px 6% 85px; } .hero-intro { font-size: 22px; margin-top: 0; } .hero h1 { font-size: 51px; } .hero-thinker { font-size: 17px; margin-top: 27px; } .hero-lead { font-size: 14px; max-width: 290px; white-space: normal; } .hero-bottom { left: 6%; right: 6%; } .hero-bottom .eyebrow { font-size: 9px; letter-spacing: 1.2px; max-width: 260px; } .thread-strip { padding: 18px 6%; gap: 10px 16px; font-size: 11px; } .thread-strip span { gap: 16px; }
- .section { padding: 58px 6%; } .section h2 { font-size: 36px; } .section-label { font-size: 11px; letter-spacing: 1.2px; } .section-heading { display: block; margin-bottom: 28px; } .section-heading > p { margin-top: 21px; max-width: 100%; } .perspective-grid,.context-grid { grid-template-columns: 1fr; gap: 30px; } .question-panel h3 { font-size: 23px; } .image-caption { font-size: 9px; } .story-copy { font-size: 15px; } .story-quote { font-size: 23px; } .facts { margin-top: 12px; } .ambition-grid { grid-template-columns: 1fr; gap: 32px; margin-top: 35px; } .ambition h3 { margin-top: 17px; } .ambition p { max-width: 440px; } .contact-section { padding: 52px 6%; } .contact-grid { flex-direction: column; align-items: flex-start; gap: 30px; } .contact-section h2 { font-size: 38px; } .footer { padding: 22px 6%; flex-wrap: wrap; font-size: 11px; } .footer .eyebrow { display: none; }
+ .section { padding: 58px 6%; } .section h2 { font-size: 36px; } .section-label { font-size: 11px; letter-spacing: 1.2px; } .section-heading { display: block; margin-bottom: 28px; } .section-heading > p { margin-top: 21px; max-width: 100%; } .ambition-section .section-heading > p { margin-top: 21px; } .perspective-grid,.context-grid { grid-template-columns: 1fr; gap: 30px; } .question-panel h3 { font-size: 23px; } .image-caption { font-size: 9px; } .story-copy { font-size: 15px; } .story-quote { font-size: 23px; } .facts { margin-top: 12px; } .ambition-grid { grid-template-columns: 1fr; gap: 32px; margin-top: 35px; } .ambition h3 { margin-top: 17px; } .ambition p { max-width: 440px; } .contact-section { padding: 52px 6%; } .contact-grid { flex-direction: column; align-items: flex-start; gap: 30px; } .contact-section h2 { font-size: 38px; } .footer { padding: 22px 6%; flex-wrap: wrap; font-size: 11px; } .footer .eyebrow { display: none; }
  .mobile-break { display: inline; }
 }
 @media(prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { animation: none !important; transition: none !important; } }

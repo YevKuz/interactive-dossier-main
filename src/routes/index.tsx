@@ -5,8 +5,9 @@ import { Button } from '@/components/ui/button';
 import { dossierCopy } from '@/lib/dossier-copy';
 import stairs from '@/assets/perspective-stairs.jpg';
 import perspectiveTest from '@/assets/perspective-stairs.svg';
-import cvEn from '@/assets/cv-en.asset.json';
-import cvCs from '@/assets/cv-cz.asset.json';
+
+const cvEnUrl = `${import.meta.env.BASE_URL}CVs/en.html`;
+const cvCsUrl = `${import.meta.env.BASE_URL}CVs/cz.html`;
 
 export const Route = createFileRoute('/')({
   head: () => ({ meta: [
@@ -27,6 +28,7 @@ function Index() {
   const perspectiveRevealRef = useRef<HTMLDivElement>(null);
   const hasPerspectiveSelection = useRef(false);
   const t = dossierCopy[language];
+  const cvUrl = language === 'en' ? cvEnUrl : cvCsUrl;
   useEffect(() => { document.documentElement.lang = language; }, [language]);
   useEffect(() => {
     let target: HTMLDivElement | null = null;
@@ -60,7 +62,7 @@ function Index() {
     <main>
       <section className="hero" id="top">
         <img src={stairs} alt="" width={1920} height={1024} className="hero-image" fetchPriority="high" />
-        <div className="hero-content"><p className="hero-intro">{t.intro}</p><h1>{t.headline.split('|').flatMap((part, i) => i === 0 ? [part] : [<br className="mobile-break" key={`b${i}`} />, part])}</h1><p className="hero-thinker">{t.thinker}</p><p className="hero-lead">{t.lead}</p><Button asChild className="intro-link"><a href="#perspective">{t.explore}<ArrowDownRight /></a></Button></div>
+        <div className="hero-content"><p className="hero-intro">{t.intro}</p><h1>{t.headline.split('|').flatMap((part, i) => i === 0 ? [part] : [<br className="mobile-break" key={`b${i}`} />, part])}</h1><p className="hero-thinker">{t.thinker}</p><p className="hero-lead">{t.lead}</p><div className="hero-actions"><Button asChild className="intro-link"><a href="#perspective">{t.explore}<ArrowDownRight /></a></Button><Button asChild variant="outline" className="hero-cv"><a href={cvUrl} target="_blank" rel="noopener noreferrer">{t.cv}<Download /></a></Button></div></div>
         <div className="hero-bottom"><span className="eyebrow">{t.location}</span><ArrowDown /></div>
       </section>
       <div className="thread-strip">{t.fields.map(field => <span key={field}>{field}</span>)}</div>
@@ -71,10 +73,10 @@ function Index() {
         </div>
         <div ref={perspectiveRevealRef} id="perspective-reveal" aria-live="polite">{selected !== null && <div className="reveal"><div className="eyebrow section-label">{t.myAnswer}</div><p className="chosen-perspective">{t.interpretations[selected]}</p><h3>{t.revealTitle}</h3><p>{t.reveal}</p><Button variant="ghost" className="reset-button" onClick={() => setSelected(null)}><RotateCcw />{t.change}</Button></div>}</div>
       </section>
-      <section className="section context-section" id="context"><div className="context-grid"><div><div className="eyebrow section-label">{t.sectionTwo}</div><h2>{t.storyTitle}</h2><div className="story-copy"><p>{t.story}</p><p>{t.storySecond}</p></div><blockquote className="story-quote">{t.quote}</blockquote></div><div className="facts"><div className="eyebrow">{t.factsLabel}</div>{t.facts.map(fact => <article key={fact.title} className="fact"><div className="fact-label">{fact.label}</div><h3>{fact.title}</h3><p>{fact.detail}</p></article>)}</div></div></section>
-      <section className="section" id="next"><div className="section-heading"><div><div className="eyebrow section-label">{t.sectionThree}</div><h2>{t.ambitionTitle}</h2></div><p>{t.ambitionIntro}</p></div><div className="ambition-grid">{t.ambitions.map(item => <article className="ambition" key={item.number}><span className="ambition-number">{item.number} /</span><h3>{item.title}</h3><div className="ambition-field">{item.text}</div><p>{item.detail}</p></article>)}</div></section>
+      <section className="section context-section" id="context"><div className="context-grid"><div><div className="eyebrow section-label">{t.sectionTwo}</div><h2>{t.storyTitle}</h2><div className="story-copy"><p>{t.story}</p><p>{t.storySecond}</p><p>{t.storyThird}</p></div><blockquote className="story-quote">{t.quote}</blockquote></div><div className="facts"><div className="eyebrow">{t.factsLabel}</div>{t.facts.map(fact => <article key={fact.title} className="fact"><div className="fact-label">{fact.label}</div><h3>{fact.title}</h3><p>{fact.detail}</p></article>)}</div></div></section>
+      <section className="section ambition-section" id="next"><div className="section-heading"><div><div className="eyebrow section-label">{t.sectionThree}</div><h2>{t.ambitionTitle}</h2></div><p>{t.ambitionIntro}</p></div><div className="ambition-grid">{t.ambitions.map(item => <article className="ambition" key={item.number}><span className="ambition-number">{item.number} /</span><h3>{item.title}</h3><div className="ambition-field">{item.text}</div><p>{item.detail}</p></article>)}</div></section>
       <section className="contact-section" id="contact"><div className="eyebrow section-label">{t.contactLabel}</div><div className="contact-grid"><div><h2>{t.contactTitle}</h2><p>{t.contactText}</p></div><div className="contact-links"><Button asChild className="contact-primary"><a href="mailto:yevgeniku@gmail.com">{t.email}<ArrowUpRight /></a></Button><Button asChild variant="link" className="contact-secondary"><a href="https://www.linkedin.com/in/evgenykuzminfinance/" target="_blank" rel="noopener noreferrer">{t.linkedin}<ArrowUpRight /></a></Button></div></div></section>
     </main>
-    <footer className="footer"><span>© {new Date().getFullYear()} Evgeny Kuzmin</span><span className="eyebrow">{t.footer}</span><a className="footer-cv" href={language === 'en' ? cvEn.url : cvCs.url} target="_blank" rel="noopener noreferrer">{t.cv}<Download /></a></footer>
+    <footer className="footer"><span>© {new Date().getFullYear()} Evgeny Kuzmin</span><span className="eyebrow">{t.footer}</span><a className="footer-cv" href={cvUrl} target="_blank" rel="noopener noreferrer">{t.cv}<Download /></a></footer>
   </>;
 }
